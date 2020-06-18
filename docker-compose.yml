@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  web:
+    image: aronpc/php-alpine:latest-nginx
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - composer:/app/.composer/
+      - config:/app/.config/
+      - ash_history:/app/.ash_history
+    labels:
+      - 'traefik.enable=false'
+
+volumes:
+  composer:
+  config:
+  ash_history:

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  app:
+    image: aronpc/php-alpine:latest-nginx
+    volumes:
+      - ./:/var/www/app
+
+  worker:
+    image: aronpc/php:latest-alpine-laravel-worker
+    volumes:
+      - ./:/var/www/app
