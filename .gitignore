@@ -2,3 +2,4 @@
 .composer
 .config
 /vendor
+.phpunit.result.cache

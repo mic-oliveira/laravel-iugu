@@ -50,7 +50,7 @@ class InvoiceServiceTest extends TestCase
     {
         $this->invoiceService->invoiceRepository->setClient(new Client(['handler'=>$this->mockInvoiceRequest()]));
         $invoice = factory(Invoice::class)->make();
-        $this->assertInstanceOf(Invoice::class,$this->invoiceService->post($invoice->toArray()));
+        $this->assertInstanceOf(Invoice::class,$this->invoiceService->create($invoice->toArray()));
     }
 
     /**

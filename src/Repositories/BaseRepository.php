@@ -76,6 +76,7 @@ abstract class BaseRepository
     public function setClient(Client $client)
     {
         $this->client = $client;
+        return $this;
     }
 
     /**

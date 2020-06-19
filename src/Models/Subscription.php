@@ -5,9 +5,12 @@ namespace Iugu\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Iugu\Traits\IuguBaseTrait;
 
 class Subscription extends Model
 {
+    use IuguBaseTrait;
+
     protected $table='subscriptions';
 
     protected $fillable=[

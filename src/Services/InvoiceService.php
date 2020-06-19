@@ -32,7 +32,7 @@ class InvoiceService
      * @throws BindingResolutionException
      * @throws Throwable
      */
-    public function post($invoiceData)
+    public function create($invoiceData)
     {
         $invoice=$this->invoiceRepository->createModel();
         $invoice->fill($invoiceData)->saveOrFail();

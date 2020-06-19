@@ -33,7 +33,7 @@ class CustomerService
      * @throws BindingResolutionException
      * @throws Throwable
      */
-    public function post($customerData=[])
+    public function create($customerData=[])
     {
         $customer = $this->customerRepository->createModel();
         $customer->fill($customerData)->save();

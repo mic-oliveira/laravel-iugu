@@ -240,4 +240,26 @@ trait IuguTestTrait
         ]);
         return new HandlerStack($mock);
     }
+
+    private function mockPlanRequest($statusCode=200,$header=[],$data='',$method='POST',$uri='test')
+    {
+        if(empty($data)) {
+            $data = '{
+                "id": "30702F77F08A46B9BA077E77F23036DA",
+                "name": "Plano Test",
+                "identifier": "plano_test",
+                "interval": 1,
+                "interval_type": "months",
+                "created_at": "2020-06-19T10:30:50-03:00",
+                "updated_at": "2020-06-19T10:33:47-03:00",
+                "payable_with": "all"
+            }';
+        }
+        $mock = new MockHandler([
+            new Response($statusCode,$header,$data),
+            new Response(202, ['Content-Length' => 0]),
+            new RequestException('Error Communicating with Server', new Request($method, $uri))
+        ]);
+        return new HandlerStack($mock);
+    }
 }

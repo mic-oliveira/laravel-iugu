@@ -4,20 +4,19 @@
 namespace Iugu\Tests\Unit\Repositories;
 
 
-use GuzzleHttp\Client;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Iugu\Models\Invoice;
-use Iugu\Repositories\InvoiceRepository;
+use Iugu\Models\Plan;
+use Iugu\Repositories\PlanRepository;
 use Iugu\Tests\TestCase;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class InvoiceRepositoryTest extends TestCase
+class PlanRepositoryTest extends TestCase
 {
     use DatabaseMigrations;
 
-    private InvoiceRepository $invoiceRepository;
+    private PlanRepository $planRepository;
 
     /**
      * @throws BindingResolutionException
@@ -31,12 +30,12 @@ class InvoiceRepositoryTest extends TestCase
             '--realpath' => realpath(__DIR__.'/../../../database/migrations'),
         ]);
         $this->loadMigrationsFrom(realpath(__DIR__.'/../../../database/migrations'));
-        $this->invoiceRepository = app()->make(InvoiceRepository::class);
+        $this->planRepository = app()->make(PlanRepository::class);
     }
 
     public function testGet()
     {
-        $this->assertInstanceOf(QueryBuilder::class,$this->invoiceRepository->get());
+        $this->assertInstanceOf(QueryBuilder::class,$this->planRepository->get());
     }
 
     /**
@@ -45,9 +44,9 @@ class InvoiceRepositoryTest extends TestCase
     public function testFind()
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->invoiceRepository->find(1);
-        factory($this->invoiceRepository)->create();
-        $this->invoiceRepository->find(1);
+        $this->planRepository->find(1);
+        factory($this->planRepository)->create();
+        $this->planRepository->find(1);
     }
 
     /**
@@ -55,23 +54,6 @@ class InvoiceRepositoryTest extends TestCase
      */
     public function testCreateModel()
     {
-        $this->assertInstanceOf(Invoice::class, $this->invoiceRepository->createModel());
+        $this->assertInstanceOf(Plan::class, $this->planRepository->createModel());
     }
-
-    /**
-     * @throws BindingResolutionException
-     */
-    public function testFindIuguId()
-    {
-        $this->expectException(ModelNotFoundException::class);
-        $this->invoiceRepository->findIuguId(1);
-        factory(Invoice::class)->create();
-        $this->assertInstanceOf(Invoice::class, $this->invoiceRepository->findIuguId(1));
-    }
-
-    public function setClientTest()
-    {
-        $this->assertInstanceOf(Client::class,$this->invoiceRepository->setClient(new Client())->getClient());
-    }
-
 }

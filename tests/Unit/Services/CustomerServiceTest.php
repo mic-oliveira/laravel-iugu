@@ -49,9 +49,13 @@ class CustomerServiceTest extends TestCase
     {
         $customer=factory(Customer::class)->make(['cpf_cnpj'=>'14576487760']);
         $this->customerService->customerRepository->setClient(new Client(['handler'=>$this->mockCustomerRequest()]));
-        $this->assertInstanceOf(Customer::class,$this->customerService->post($customer->toArray()));
+        $this->assertInstanceOf(Customer::class,$this->customerService->create($customer->toArray()));
     }
 
+    /**
+     * @throws BindingResolutionException
+     * @throws Throwable
+     */
     public function testShow()
     {
         $this->testPost();
