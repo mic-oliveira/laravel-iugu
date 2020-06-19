@@ -31,11 +31,6 @@ trait IuguInvoiceTrait
         return $this->decodeResponse($this->createRequest()->post($this->getBasePath()."/send_email"));
     }
 
-    public function getIuguDataAttribute()
-    {
-        return $this->decodeResponse($this->createRequest()->get($this->getBasePath()));
-    }
-
     public function captureInvoice()
     {
         return $this->decodeResponse($this->createRequest()->post($this->getBasePath()."/capture"));
