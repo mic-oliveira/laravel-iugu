@@ -8,7 +8,6 @@ use GuzzleHttp\Client;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Iugu\Models\Invoice;
-use Iugu\Services\CustomerService;
 use Iugu\Services\InvoiceService;
 use Iugu\Tests\IuguTestTrait;
 use Iugu\Tests\TestCase;
@@ -107,6 +106,5 @@ class InvoiceServiceTest extends TestCase
         $this->invoiceService->invoiceRepository->setClient(new Client(['handler' => $this->mockInvoiceRequest()]));
         $this->assertInstanceOf(Invoice::class, $this->invoiceService->cancel(1));
     }
-
 
 }

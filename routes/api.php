@@ -13,5 +13,9 @@ Route::namespace('Iugu\\Controllers\\Hooks')->prefix('api/hooks')->group(functio
         Route::post('suspended','SusbcriptionController@suspendend');
         Route::post('activated','SubscriptionController@activated');
     });
+
+    Route::group(['prefix'=>'invoices'], function () {
+
+    });
 });
 

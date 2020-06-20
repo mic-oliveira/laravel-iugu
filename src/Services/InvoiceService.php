@@ -76,6 +76,7 @@ class InvoiceService
 
     /**
      * @param $invoiceData
+     * @return Model|mixed
      * @throws BindingResolutionException
      */
     public function sync($invoiceData)

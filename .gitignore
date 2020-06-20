@@ -1,5 +1,6 @@
-.ash_history
-.composer
-.config
+/.idea
+/.ash_history
+/.composer
+/.config
 /vendor
 .phpunit.result.cache
