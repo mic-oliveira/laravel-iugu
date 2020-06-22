@@ -8,6 +8,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Iugu\Models\Plan;
+use Iugu\Models\Subscription;
 use Iugu\Repositories\PlanRepository;
 use Iugu\Repositories\SubscriptionRepository;
 use Iugu\Tests\TestCase;
@@ -55,6 +56,6 @@ class SubscriptionRepositoryTest extends TestCase
      */
     public function testCreateModel()
     {
-        $this->assertInstanceOf(Plan::class, $this->subscriptionRepository->createModel());
+        $this->assertInstanceOf(Subscription::class, $this->subscriptionRepository->createModel());
     }
 }

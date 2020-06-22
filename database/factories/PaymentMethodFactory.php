@@ -17,4 +17,9 @@ use Iugu\Models\PaymentMethod;
 |
 */
 
-$factory->define(PaymentMethod::class, function (Faker $faker) {});
+$factory->define(PaymentMethod::class, function (Faker $faker) {
+    return [
+        'description' => $faker->word,
+        'token' => $faker->uuid,
+    ];
+});

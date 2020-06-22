@@ -16,6 +16,8 @@ class CreatePaymentMethodsTable extends Migration
             $table->string('description');
             $table->string('token');
             $table->boolean('set_as_default')->default(false);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

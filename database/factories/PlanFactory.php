@@ -19,10 +19,11 @@ use Iugu\Models\Plan;
 
 $factory->define(Plan::class, function (Faker $faker) {
     return [
+        'name' => $faker->name,
         'iugu_id'=> $faker->uuid,
         'identifier' => $faker->word,
         'interval' => $faker->numerify('#'),
-        'interval_type' => $faker->shuffle(['weeks','months']),
-        'price_cents' => $faker->numerify('###')
+        'interval_type' => $faker->shuffle(['weeks','months'])[0],
+        'value_cents' => $faker->numerify('###')
     ];
 });

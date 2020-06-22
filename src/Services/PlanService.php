@@ -12,7 +12,7 @@ use Throwable;
 
 class PlanService
 {
-    private PlanRepository $planRepository;
+    public PlanRepository $planRepository;
 
     /**
      * PlanService constructor.

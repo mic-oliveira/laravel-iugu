@@ -49,6 +49,7 @@ class CreateInvoicesTable extends Migration
             $table->dateTime('canceled_atd')->nullable();
             $table->dateTime('chargeback_at')->nullable();
             $table->dateTime('expired_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -19,6 +19,8 @@ class CreatePlansTable extends Migration
             $table->bigInteger('value_cents');
             $table->string('payable_with')->nullable();
             $table->json('features')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

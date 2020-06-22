@@ -12,7 +12,7 @@ use Throwable;
 
 class SubscriptionService
 {
-    private SubscriptionRepository $subscriptionRepository;
+    public SubscriptionRepository $subscriptionRepository;
 
     /**
      * SubscriptionService constructor.
