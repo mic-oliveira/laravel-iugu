@@ -7,6 +7,7 @@ namespace Iugu\Tests\Unit\Services;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Iugu\Models\Customer;
 use Iugu\Models\Plan;
 use Iugu\Models\Subscription;
 use Iugu\Services\SubscriptionService;
@@ -48,10 +49,11 @@ class SubscriptionServiceTest extends TestCase
      */
     public function testPost()
     {
-        $subscription=factory(Subscription::class)->make();
-        dump($subscription->toArray());
-        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockPlanRequest()]));
-        $this->assertInstanceOf(Plan::class,$this->subscriptionService->create($subscription->toArray()));
+        factory(Customer::class)->create();
+        $subscription=factory(Subscription::class)->make(['client_id'=>1]);
+        //dump($subscription->toArray());
+        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockSubscriptionRequest()]));
+        $this->assertInstanceOf(Subscription::class,$this->subscriptionService->create($subscription->toArray()));
     }
 
     /**
@@ -61,8 +63,8 @@ class SubscriptionServiceTest extends TestCase
     public function testShow()
     {
         $this->testPost();
-        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockPlanRequest()]));
-        $this->assertInstanceOf(Plan::class, $this->subscriptionService->show(1));
+        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockSubscriptionRequest()]));
+        $this->assertInstanceOf(Subscription::class, $this->subscriptionService->show(1));
     }
 
     /**
@@ -74,7 +76,7 @@ class SubscriptionServiceTest extends TestCase
         $this->testPost();
         $subscription=["name"=>"Teste Update"];
         $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockPlanRequest()]));
-        $this->assertInstanceOf(Plan::class, $this->subscriptionService->update($subscription,1));
+        $this->assertInstanceOf(Subscription::class, $this->subscriptionService->update($subscription,1));
     }
 
     /**
@@ -84,17 +86,16 @@ class SubscriptionServiceTest extends TestCase
     public function testDelete()
     {
         $this->testPost();
-        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockPlanRequest()]));
-        $this->assertInstanceOf(Plan::class, $this->subscriptionService->delete(1));
+        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockSubscriptionRequest()]));
+        $this->assertInstanceOf(Subscription::class, $this->subscriptionService->delete(1));
     }
 
     /**
-     * @throws BindingResolutionException
      */
     public function testSync()
     {
-        $subscription = factory(Subscription::class)->make();
-        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockPlanRequest()]));
+        $subscription = factory(Subscription::class)->make(['client_id'=>1]);
+        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockSubscriptionRequest()]));
         $this->assertInstanceOf(Subscription::class, $this->subscriptionService->sync($subscription->toArray()));
     }
 
@@ -105,7 +106,7 @@ class SubscriptionServiceTest extends TestCase
     public function syncDelete()
     {
         $this->testPost();
-        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockPlanRequest()]));
-        $this->assertInstanceOf(Plan::class, $this->subscriptionService->syncDelete(1));
+        $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockSubscriptionRequest()]));
+        $this->assertInstanceOf(Subscription::class, $this->subscriptionService->syncDelete(1));
     }
 }

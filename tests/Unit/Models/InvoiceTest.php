@@ -38,14 +38,15 @@ class InvoiceTest extends TestCase
 
     public function testSync()
     {
-        $this->markTestSkipped();
         $this->assertIsObject($this->invoice->setClient(new Client(['handler'=> $this->mockInvoiceRequest()]))
             ->sync());
     }
 
     public function testSyncDelete()
     {
-        $this->markTestSkipped();
+        $this->testSync();
+        $this->assertIsBool($this->invoice->setClient(new Client(['handler'=> $this->mockInvoiceRequest()]))
+            ->syncDelete());
     }
 
     public function testPostInvoice()

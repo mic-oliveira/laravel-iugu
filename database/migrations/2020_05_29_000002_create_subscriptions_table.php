@@ -11,6 +11,7 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->string('iugu_id')->index()->nullable();
+            $table->string('customer_id')->index()->nullable();
             $table->string('plan_identifier');
             $table->boolean('only_on_charge_success');
             $table->boolean('ignore_due_email');
@@ -21,7 +22,7 @@ class CreateSubscriptionsTable extends Migration
             $table->bigInteger('credits_min')->nullable();
             $table->boolean('two_steps')->nullable();
             $table->boolean('suspend_on_invoice_expired')->nullable();
-            $table->foreignId('customer_id')->constrained('customers');
+            $table->foreignId('client_id')->constrained('customers');
             $table->date('expire_at')->nullable();
             $table->softDeletes();
             $table->timestamps();

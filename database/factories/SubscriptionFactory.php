@@ -20,11 +20,13 @@ use Iugu\Models\Subscription;
 $factory->define(Subscription::class, function (Faker $faker) {
     return [
         'iugu_id' => $faker->uuid,
+        'customer_id' => $faker->uuid,
         'plan_identifier' => $faker->word,
-        'only_on_charge_success' => $faker->shuffle(['true','false']),
+        'only_on_charge_success' => $faker->shuffle(['true','false'])[0],
         'ignore_due_email'=> true,
         'price_cents' => $faker->numerify('###'),
         'payable_with' => 'all',
         'credits_based'=> false,
+        'client_id' => rand(1,20),
     ];
 });

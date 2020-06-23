@@ -79,4 +79,16 @@ class SubscriptionService
         return $subscription;
     }
 
+    /**
+     * @param $subscriptionData
+     * @return Model|mixed
+     * @throws BindingResolutionException
+     */
+    public function sync($subscriptionData)
+    {
+        $subscription = $this->subscriptionRepository->createModel();
+        $subscription->fill($subscriptionData)->syncOrFail();
+        return $subscription;
+    }
+
 }

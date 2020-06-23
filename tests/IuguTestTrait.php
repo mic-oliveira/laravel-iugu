@@ -262,4 +262,69 @@ trait IuguTestTrait
         ]);
         return new HandlerStack($mock);
     }
+
+    public function mockSubscriptionRequest($statusCode=200,$header=[],$data='',$method='POST',$uri='test')
+    {
+        if(empty($data)) {
+            $data = '{
+                "id": "723D0E7D64F84FBF95933A402DFC2E8E",
+                "suspended": false,
+                "plan_identifier": "plano_test",
+                "price_cents": 100,
+                "currency": "BRL",
+                "features": {},
+                "expires_at": null,
+                "created_at": "2020-06-23T09:12:49-03:00",
+                "updated_at": "2020-06-23T09:12:50-03:00",
+                "customer_name": "Cliente Test",
+                "customer_email": "teste@teste.com",
+                "cycled_at": "2020-06-23",
+                "credits_min": 0,
+                "credits_cycle": null,
+                "payable_with": "all",
+                "ignore_due_email": null,
+                "customer_id": "0DBB335ECFB44ACE8B4EDAF25037CAA4",
+                "plan_name": "Plano Test",
+                "customer_ref": "Cliente Test",
+                "plan_ref": "Plano Test",
+                "active": true,
+                "two_step": true,
+                "suspend_on_invoice_expired": true,
+                "in_trial": null,
+                "credits": 0,
+                "credits_based": false,
+                "recent_invoices": [
+                    {
+                        "id": "31033E0A2124472F970937DA65A5C31B",
+                        "due_date": "2020-06-23",
+                        "status": "pending",
+                        "total": "R$ 1,00",
+                        "secure_url": "https://faturas.iugu.com/31033e0a-2124-472f-9709-37da65a5c31b-89f8"
+                    }
+                ],
+                "subitems": [],
+                "logs": [
+                    {
+                        "id": "5267A39A21E24E969FC66222930FD357",
+                        "description": "Fatura criada",
+                        "notes": "Fatura criada com os items:  1x Ativação de Assinatura: Plano Test = R$ 1,00;",
+                        "created_at": "2020-06-23T09:12:50-03:00"
+                    },
+                    {
+                        "id": "72EEDE09E9CF4BE385728BF119B2F5C7",
+                        "description": "Assinatura Criada",
+                        "notes": "Assinatura Criada ",
+                        "created_at": "2020-06-23T09:12:49-03:00"
+                    }
+                ],
+                "custom_variables": []
+            }';
+        }
+        $mock = new MockHandler([
+            new Response($statusCode,$header,$data),
+            new Response(202, ['Content-Length' => 0]),
+            new RequestException('Error Communicating with Server', new Request($method, $uri))
+        ]);
+        return new HandlerStack($mock);
+    }
 }

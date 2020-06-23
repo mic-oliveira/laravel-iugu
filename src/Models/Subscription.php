@@ -28,6 +28,7 @@ class Subscription extends Model
         'two_steps',
         'suspend_on_invoice_expired',
         'customer_id',
+        'client_id',
         'expire_at'
     ];
 }

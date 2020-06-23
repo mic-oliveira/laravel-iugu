@@ -48,7 +48,6 @@ class PlanServiceTest extends TestCase
     public function testPost()
     {
         $plan=factory(Plan::class)->make();
-        dump($plan->toArray());
         $this->planService->planRepository->setClient(new Client(['handler'=>$this->mockPlanRequest()]));
         $this->assertInstanceOf(Plan::class,$this->planService->create($plan->toArray()));
     }
