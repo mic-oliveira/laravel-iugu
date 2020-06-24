@@ -23,14 +23,14 @@ $factory->define(Customer::class, function (Faker $faker) {
         'email' => $faker->email,
         'cpf_cnpj' => $faker->numerify('###########'),
         'notes' =>  $faker->text,
-        /*'number' => $faker->numerify('###'),
+        'number' => $faker->numerify('###'),
         'street' => $faker->streetName,
         'district' => $faker->name,
         'complement' => $faker->text(30),
-        'city' => $faker->city,
-        'state' => $faker->state,
-        'zip_code' => $faker->postcode,
+        'city' => 'Araruama',
+        'state' => 'RJ',
+        'zip_code' => "28970000",
         'phone_prefix' => $faker->numerify('###'),
-        'phone' => $faker->numerify('#########')*/
+        'phone' => $faker->numerify('#########')
     ];
 });

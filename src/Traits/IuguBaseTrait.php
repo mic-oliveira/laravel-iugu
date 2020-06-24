@@ -12,6 +12,11 @@ trait IuguBaseTrait
 {
     use GuzzleRequestTrait;
 
+    /**
+     * @param array $options
+     * @return mixed
+     * @throws GuzzleException
+     */
     public function sync(array $options = [])
     {
         try{
@@ -22,6 +27,11 @@ trait IuguBaseTrait
         }
     }
 
+    /**
+     * @param array $options
+     * @return mixed
+     * @throws GuzzleException
+     */
     public function syncOrFail(array $options=[])
     {
         try{
@@ -32,6 +42,9 @@ trait IuguBaseTrait
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function syncDelete()
     {
         try{
@@ -49,18 +62,18 @@ trait IuguBaseTrait
     public function saveRequest()
     {
         try{
-            $customer = null;
+            $response = null;
             if(empty($this->iugu_id))
             {
-                $customer=$this->postRequest();
-                $this->iugu_id = $customer->id;
+                $response=$this->postRequest();
             } else {
-                $customer=$this->updateRequest();
+                $response=$this->updateRequest();
             }
-            $collect=collect($customer)->toArray();
+            $this->iugu_id = $response->id;
+            $collect=collect($response)->toArray();
             $this->fill($collect);
             $this->saveOrFail();
-            return $customer;
+            return $this;
         } catch (ClientException $exception) {
             throw $exception;
         }
@@ -83,13 +96,18 @@ trait IuguBaseTrait
         $data= collect([$this->toArray()])
             ->except(['id',"iugu_id",'deleted_at','created_at','updated_at','customer_id','custom_variables']);
         return $this->decodeResponse($this->createRequest()->put($this->getBasePath(), [
-            'json' => $data->toJson()
+            'json' => $this->toArray()
         ]));
     }
 
     public function deleteRequest()
     {
-        return $this->decodeResponse($this->createRequest()->delete($this->getBasePath()));
+        $response=$this->decodeResponse($this->createRequest()->delete($this->getBasePath()));
+        $this->iugu_id = $response->id;
+        $collect=collect($response)->toArray();
+        $this->fill($collect);
+        $this->saveOrFail();
+        return $this;
     }
 
     public function getIuguDataAttribute()

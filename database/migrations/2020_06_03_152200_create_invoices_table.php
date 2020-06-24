@@ -12,6 +12,7 @@ class CreateInvoicesTable extends Migration
             $table->id();
             $table->string('iugu_id')->index()->nullable();
             $table->string('email');
+            $table->string('status')->nullable();
             $table->string('order_id')->nullable();
             $table->date('due_date');
             $table->boolean('ensure_workday_due_date')->nullable();

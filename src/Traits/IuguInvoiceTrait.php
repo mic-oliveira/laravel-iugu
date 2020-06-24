@@ -13,7 +13,10 @@ trait IuguInvoiceTrait
 
     public function refundInvoice()
     {
-        return $this->decodeResponse($this->createRequest()->post($this->getBasePath()."/refund"));
+        $invoice=$this->decodeResponse($this->createRequest()->post($this->getBasePath()."/refund"));
+        $invoice=collect($invoice)->toArray();
+        $this->fill($invoice)->saveOrFail();
+        return $this;
     }
 
     public function cancelInvoice()
@@ -23,16 +26,28 @@ trait IuguInvoiceTrait
 
     public function duplicateInvoice()
     {
-        return $this->decodeResponse($this->createRequest()->post($this->getBasePath()."/duplicate"));
+        $invoice=$this->decodeResponse($this->createRequest()->post($this->getBasePath()."/duplicate",[
+            'json' => collect($this->toArray())->except('items')->toArray()
+        ]));
+        $this->iugu_id=$invoice->id;
+        $invoice=collect($invoice)->toArray();
+        $this->fill($invoice)->saveOrFail();
+        return $this;
     }
 
     public function sendEmailInvoice()
     {
-        return $this->decodeResponse($this->createRequest()->post($this->getBasePath()."/send_email"));
+        $invoice=$this->decodeResponse($this->createRequest()->post($this->getBasePath()."/send_email"));
+        $invoice=collect($invoice)->toArray();
+        $this->fill($invoice)->saveOrFail();
+        return $this;
     }
 
     public function captureInvoice()
     {
-        return $this->decodeResponse($this->createRequest()->post($this->getBasePath()."/capture"));
+        $invoice=$this->decodeResponse($this->createRequest()->post($this->getBasePath()."/capture"));
+        $invoice=collect($invoice)->toArray();
+        $this->fill($invoice)->saveOrFail();
+        return $this;
     }
 }
