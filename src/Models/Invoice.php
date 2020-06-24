@@ -17,6 +17,7 @@ class Invoice extends Model
         'iugu_id',
         'email',
         'due_date',
+        'total_cents',
         'ensure_workday_due_date',
         'amount',
         'discount_cents',
@@ -37,7 +38,7 @@ class Invoice extends Model
     ];
 
     protected $casts=[
-        'items' => 'json',
+        'items' => 'array',
         'logs' =>  'json'
     ];
 

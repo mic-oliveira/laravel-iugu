@@ -34,7 +34,7 @@ class Customer extends Model
     ];
 
     protected $casts = [
-        'custom_variables' => 'object'
+        'custom_variables' => 'json'
     ];
 
 }

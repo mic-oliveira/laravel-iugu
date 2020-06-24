@@ -21,15 +21,16 @@ $factory->define(Invoice::class, function (Faker $faker) {
     return [
         'iugu_id' => $faker->uuid,
         'email' => $faker->email,
-        'price_cents' => $faker->numerify('###'),
-        'due_date' => now()->addWeekdays(1),
+        'due_date' => now()->addWeekdays(3)->toDateString(),
         'currency' => 'BRL',
-        'items' => [
+        'items' => $faker->shuffleArray(
             [
-                'description' => $faker->name,
-                'quantity' => 1,
-                'price_cents' => 1000
+                [
+                    'description' => $faker->name,
+                    'quantity' => 1,
+                    'price_cents' => 1000
+                ]
             ]
-        ]
+        )
     ];
 });

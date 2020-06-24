@@ -6,6 +6,7 @@ namespace Iugu\Traits;
 
 use Exception;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 
 trait IuguBaseTrait
 {
@@ -41,7 +42,10 @@ trait IuguBaseTrait
         }
     }
 
-
+    /**
+     * @return mixed
+     * @throws GuzzleException
+     */
     public function saveRequest()
     {
         try{
@@ -53,6 +57,8 @@ trait IuguBaseTrait
             } else {
                 $customer=$this->updateRequest();
             }
+            $collect=collect($customer)->toArray();
+            $this->fill($collect);
             $this->saveOrFail();
             return $customer;
         } catch (ClientException $exception) {
@@ -60,12 +66,17 @@ trait IuguBaseTrait
         }
     }
 
+    /**
+     * @param array $optionalHeaders
+     * @return mixed
+     * @throws GuzzleException
+     */
     public function postRequest($optionalHeaders = [])
     {
-        $data = collect($this->toArray())->except(['id','iugu_id'])->toArray();
-        return $this->decodeResponse($this->createRequest()->post($this->getBasePath(), array_merge([
-            'form_params' => $data
-        ],$optionalHeaders)));
+        $data = collect($this->toArray())->except(['id','iugu_id'])->toJson();
+        return $this->decodeResponse($this->createRequest()->post($this->getBasePath(), [
+            'json' => $this->toArray()
+        ]));
     }
 
     public function updateRequest()
@@ -73,7 +84,7 @@ trait IuguBaseTrait
         $data= collect([$this->toArray()])
             ->except(['id',"iugu_id",'deleted_at','created_at','updated_at','customer_id','custom_variables']);
         return $this->decodeResponse($this->createRequest()->put($this->getBasePath(), [
-            'form_params' => $data->toArray()
+            'json' => $data->toJson()
         ]));
     }
 
