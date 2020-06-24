@@ -11,13 +11,13 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->string('iugu_id')->index()->nullable();
-            $table->string('customer_id')->index()->nullable();
-            $table->string('plan_identifier');
-            $table->boolean('only_on_charge_success');
-            $table->boolean('ignore_due_email');
+            $table->string('customer_id')->index();
+            $table->string('plan_identifier')->nullable();
+            $table->boolean('only_on_charge_success')->nullable();
+            $table->boolean('ignore_due_email')->nullable();
             $table->integer('price_cents');
             $table->enum('payable_with',['all','credit_card','bank_slip'])->nullable();
-            $table->boolean('credits_based')->default(false);
+            $table->boolean('credits_based')->nullable();
             $table->bigInteger('credits_cycle')->nullable();
             $table->bigInteger('credits_min')->nullable();
             $table->boolean('two_steps')->nullable();

@@ -235,7 +235,7 @@ trait IuguTestTrait
         }
         $mock = new MockHandler([
             new Response($statusCode,$header,$data),
-            new Response(202, ['Content-Length' => 0]),
+            new Response(200, ['Content-Length' => 0]),
             new RequestException('Error Communicating with Server', new Request($method, $uri))
         ]);
         return new HandlerStack($mock);

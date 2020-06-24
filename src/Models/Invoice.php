@@ -3,6 +3,7 @@
 namespace Iugu\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Iugu\Traits\IuguInvoiceTrait;
 
@@ -17,6 +18,7 @@ class Invoice extends Model
         'iugu_id',
         'email',
         'due_date',
+        'total_cents',
         'ensure_workday_due_date',
         'amount',
         'discount_cents',
@@ -37,7 +39,7 @@ class Invoice extends Model
     ];
 
     protected $casts=[
-        'items' => 'json',
+        'items' => 'array',
         'logs' =>  'json'
     ];
 
