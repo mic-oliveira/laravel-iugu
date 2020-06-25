@@ -22,4 +22,9 @@ class PaymentMethod extends Model
         'token',
         'set_as_default'
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class,'client_id');
+    }
 }

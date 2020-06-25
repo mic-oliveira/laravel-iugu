@@ -110,6 +110,20 @@ trait IuguBaseTrait
         return $this;
     }
 
+    public function importFromIugu()
+    {
+        $response=$this->getIuguDataAttribute();
+        if (!$this::where('iugu_id',$response->id)->exists()&&empty($this->id))
+        {
+            $this->iugu_id = $response->id;
+            $collect=collect($response)->toArray();
+            $this->fill($collect);
+            $this->saveOrFail();
+            return $this;
+        }
+        return $this::where('iugu_id',$response->id)->get()->first();
+    }
+
     public function getIuguDataAttribute()
     {
         return $this->decodeResponse($this->createRequest()->get($this->getBasePath()));

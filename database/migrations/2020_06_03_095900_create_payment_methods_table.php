@@ -12,10 +12,11 @@ class CreatePaymentMethodsTable extends Migration
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
             $table->string('iugu_id')->index()->nullable();
-            $table->foreignId('customer_id')->constrained('customers');
+            $table->string('customer_id')->nullable();
+            $table->foreignId('client_id')->constrained('customers');
             $table->string('description');
             $table->string('token');
-            $table->boolean('set_as_default')->default(false);
+            $table->boolean('set_as_default')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -23,6 +24,6 @@ class CreatePaymentMethodsTable extends Migration
 
     public function down()
     {
-
+        Schema::dropIfExists('payment_methods');
     }
 }

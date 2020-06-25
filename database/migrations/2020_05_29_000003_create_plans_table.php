@@ -15,7 +15,7 @@ class CreatePlansTable extends Migration
             $table->string('name');
             $table->string('identifier');
             $table->bigInteger('interval');
-            $table->enum('interval_type',['weeks','months'])->default('months');
+            $table->enum('interval_type',['weeks','months'])->nullable();
             $table->bigInteger('value_cents');
             $table->string('payable_with')->nullable();
             $table->json('features')->nullable();

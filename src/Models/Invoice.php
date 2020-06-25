@@ -3,7 +3,6 @@
 namespace Iugu\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Iugu\Traits\IuguInvoiceTrait;
 
@@ -17,6 +16,7 @@ class Invoice extends Model
     protected $fillable = [
         'iugu_id',
         'email',
+        'status',
         'due_date',
         'total_cents',
         'ensure_workday_due_date',
