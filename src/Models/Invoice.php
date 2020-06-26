@@ -39,8 +39,10 @@ class Invoice extends Model
     ];
 
     protected $casts=[
-        'items' => 'array',
-        'logs' =>  'json'
+        'items' => 'json',
+        'logs' =>  'json',
+        'custom_variables' => 'json',
+        'early_payment_discounts' => 'json'
     ];
 
     public function getCustomerAttribute()

@@ -19,7 +19,6 @@ use Iugu\Models\Invoice;
 
 $factory->define(Invoice::class, function (Faker $faker) {
     return [
-        'iugu_id' => $faker->uuid,
         'email' => $faker->email,
         'due_date' => now()->addWeekdays(3)->toDateString(),
         'currency' => 'BRL',

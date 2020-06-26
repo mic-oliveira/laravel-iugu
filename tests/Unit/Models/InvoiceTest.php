@@ -32,13 +32,13 @@ class InvoiceTest extends TestCase
             '--realpath' => realpath(__DIR__.'/../../../database/migrations'),
         ]);
         $this->loadMigrationsFrom(realpath(__DIR__.'/../../../database/migrations'));
-        $this->invoice = factory(Invoice::class)->make();
+        $this->invoice = factory(Invoice::class)->make(['iugu_id'=>'5613F5336CDB44FE9737C84E885D3020']);
     }
 
 
     public function testSync()
     {
-        $this->assertIsObject($this->invoice->setClient(new Client(['handler'=> $this->mockInvoiceRequest()]))
+        $this->assertIsBool($this->invoice->setClient(new Client(['handler'=> $this->mockInvoiceRequest()]))
             ->sync());
     }
 
@@ -62,7 +62,8 @@ class InvoiceTest extends TestCase
 
     public function testRefundInvoice()
     {
-       $this->assertIsObject($this->invoice->setClient(new Client(['handler'=>$this->mockInvoiceRequest()]))->refundInvoice());
+        $this->assertIsObject($this->invoice->setClient(new Client(['handler' => $this->mockInvoiceRequest()]))
+            ->refundInvoice());
     }
 
     public function testDuplicate()

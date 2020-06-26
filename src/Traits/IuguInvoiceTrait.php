@@ -6,11 +6,11 @@ namespace Iugu\Traits;
 
 use Exception;
 use GuzzleHttp\Exception\ClientException;
+use Iugu\Models\Invoice;
 
 trait IuguInvoiceTrait
 {
     use IuguBaseTrait;
-    private $modified = false;
 
     public function refundInvoice()
     {
@@ -91,9 +91,9 @@ trait IuguInvoiceTrait
 
     public function captureInvoice()
     {
-        $invoice=$this->decodeResponse($this->createRequest()->post($this->getBasePath()."/capture"));
-        $invoice=collect($invoice)->toArray();
-        $this->fill($invoice)->saveOrFail();
+        $invoice=$this->decodeResponse($this->createRequest()->post($this->getBasePath()."/capture"),true);
+        //$invoice=collect($invoice)->toArray();
+        $this->fill($invoice)->save();
         return $this;
     }
 }

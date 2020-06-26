@@ -33,6 +33,9 @@ trait GuzzleRequestTrait
         return $this->guzzleClient;
     }
 
+    /**
+     * @return mixed
+     */
     public function getClient()
     {
         return $this->guzzleClient;
@@ -49,6 +52,9 @@ trait GuzzleRequestTrait
         $this->basePath=$basePath;
     }
 
+    /**
+     * @return string
+     */
     public function getBasePath()
     {
         if (empty($basePath))
@@ -58,8 +64,13 @@ trait GuzzleRequestTrait
         return $this->basePath;
     }
 
-    private function decodeResponse(ResponseInterface $response)
+    /**
+     * @param ResponseInterface $response
+     * @param bool $assoc
+     * @return mixed
+     */
+    private function decodeResponse(ResponseInterface $response,$assoc=false)
     {
-        return \GuzzleHttp\json_decode($response->getBody()->getContents());
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(),$assoc);
     }
 }
