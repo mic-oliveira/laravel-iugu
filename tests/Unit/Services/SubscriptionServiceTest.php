@@ -51,7 +51,6 @@ class SubscriptionServiceTest extends TestCase
     {
         factory(Customer::class)->create();
         $subscription=factory(Subscription::class)->make(['client_id'=>1]);
-        //dump($subscription->toArray());
         $this->subscriptionService->subscriptionRepository->setClient(new Client(['handler'=>$this->mockSubscriptionRequest()]));
         $this->assertInstanceOf(Subscription::class,$this->subscriptionService->create($subscription->toArray()));
     }

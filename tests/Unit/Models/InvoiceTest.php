@@ -5,6 +5,7 @@ namespace Iugu\Tests\Unit\Models;
 
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -35,13 +36,18 @@ class InvoiceTest extends TestCase
         $this->invoice = factory(Invoice::class)->make(['iugu_id'=>'5613F5336CDB44FE9737C84E885D3020']);
     }
 
-
+    /**
+     * @throws GuzzleException
+     */
     public function testSync()
     {
         $this->assertIsBool($this->invoice->setClient(new Client(['handler'=> $this->mockInvoiceRequest()]))
             ->sync());
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function testSyncDelete()
     {
         $this->testSync();
@@ -62,6 +68,7 @@ class InvoiceTest extends TestCase
 
     public function testRefundInvoice()
     {
+        $this->invoice->iugu_id='5613F5336CDB44FE9737C84E885D3020';
         $this->assertIsObject($this->invoice->setClient(new Client(['handler' => $this->mockInvoiceRequest()]))
             ->refundInvoice());
     }

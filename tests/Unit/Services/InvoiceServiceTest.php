@@ -89,17 +89,6 @@ class InvoiceServiceTest extends TestCase
      * @throws BindingResolutionException
      * @throws Throwable
      */
-    public function testRefund()
-    {
-        $this->testPost();
-        $this->invoiceService->invoiceRepository->setClient(new Client(['handler' => $this->mockInvoiceRequest()]));
-        $this->assertInstanceOf(Invoice::class, $this->invoiceService->refund(1));
-    }
-
-    /**
-     * @throws BindingResolutionException
-     * @throws Throwable
-     */
     public function testCancel()
     {
         $this->testPost();

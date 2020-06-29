@@ -94,7 +94,7 @@ class InvoiceService
     public function refund($id)
     {
         $invoice = $this->invoiceRepository->find($id);
-        $invoice->refund();
+        $invoice->refundInvoice();
         return $invoice;
     }
 
