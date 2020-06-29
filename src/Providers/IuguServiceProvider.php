@@ -2,7 +2,13 @@
 
 namespace Iugu\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use Iugu\Models\Customer;
+use Iugu\Models\Invoice;
+use Iugu\Models\PaymentMethod;
+use Iugu\Models\Plan;
+use Iugu\Models\Subscription;
 
 class IuguServiceProvider extends ServiceProvider
 {
@@ -14,6 +20,16 @@ class IuguServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        app()->when([
+            Customer::class,
+            Invoice::class,
+            PaymentMethod::class,
+            Plan::class,
+            Subscription::class
+        ])->needs(Model::class)->give(function ($app) {
+            $model=new Model();
+            $model->setConnection(config('iugu.connection'));
+        });
     }
 
     /**

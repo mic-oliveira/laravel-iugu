@@ -61,6 +61,9 @@ class PlanTest extends TestCase
         $this->assertIsObject($plan);
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function testSync()
     {
         $this->expectException(ClientException::class);

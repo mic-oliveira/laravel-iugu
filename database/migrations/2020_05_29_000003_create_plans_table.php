@@ -9,7 +9,7 @@ class CreatePlansTable extends Migration
 
     public function up()
     {
-        Schema::create('plans', function(Blueprint $table) {
+        Schema::connection(config('iugu.connection'))->create('plans', function(Blueprint $table) {
             $table->id();
             $table->string('iugu_id')->index()->nullable();
             $table->string('name');
@@ -26,6 +26,6 @@ class CreatePlansTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('plans');
+        Schema::connection(config('iugu.connection'))->dropIfExists('plans');
     }
 }

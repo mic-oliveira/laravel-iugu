@@ -20,7 +20,8 @@
     <php>
         <env name="IUGU_TOKEN" value="c13aa1837625e04502d482477a72d2fb"/>
         <env name="IUGU_URL" value="https://api.iugu.com/v1"/>
-        <env name="IUDU_ID" value="C3EB3C4E2E36478F817CC8DFB0AE9C20"/>
+        <env name="IUGU_ID" value="C3EB3C4E2E36478F817CC8DFB0AE9C20"/>
+        <env name="IUGU_CONNECTION" value="sqlite"/>
         <!--<server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>-->

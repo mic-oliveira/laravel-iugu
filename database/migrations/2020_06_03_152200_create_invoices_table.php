@@ -8,7 +8,7 @@ class CreateInvoicesTable extends Migration
 {
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::connection(config('iugu.connection'))->create('invoices', function (Blueprint $table) {
             $table->id();
             $table->string('iugu_id')->index()->nullable();
             $table->string('email');
@@ -58,7 +58,7 @@ class CreateInvoicesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::connection(config('iugu.connection'))->dropIfExists('invoices');
     }
 
 }

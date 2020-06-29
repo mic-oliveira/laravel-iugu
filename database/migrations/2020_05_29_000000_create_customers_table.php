@@ -9,7 +9,7 @@ class CreateCustomersTable extends Migration
 
     public function up()
     {
-        Schema::create('customers', function(Blueprint $table){
+        Schema::connection(config('iugu.connection'))->create('customers', function(Blueprint $table){
             $table->id();
             $table->string('iugu_id')->index()->nullable();
             $table->string('name');
@@ -33,6 +33,6 @@ class CreateCustomersTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::connection(config('iugu.connection'))->dropIfExists('customers');
     }
 }

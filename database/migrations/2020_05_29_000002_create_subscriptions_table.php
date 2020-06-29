@@ -8,7 +8,7 @@ class CreateSubscriptionsTable extends Migration
 {
     public function up()
     {
-        Schema::create('subscriptions', function (Blueprint $table) {
+        Schema::connection(config('iugu.connection'))->create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->string('iugu_id')->index()->nullable();
             $table->string('customer_id')->index();
@@ -31,6 +31,6 @@ class CreateSubscriptionsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('subscriptions');
+        Schema::connection(config('iugu.connection'))->dropIfExists('subscriptions');
     }
 }

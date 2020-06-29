@@ -9,7 +9,7 @@ class CreatePaymentMethodsTable extends Migration
 
     public function up()
     {
-        Schema::create('payment_methods', function (Blueprint $table) {
+        Schema::connection(config('iugu.connection'))->create('payment_methods', function (Blueprint $table) {
             $table->id();
             $table->string('iugu_id')->index()->nullable();
             $table->string('customer_id')->nullable();
@@ -24,6 +24,6 @@ class CreatePaymentMethodsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('payment_methods');
+        Schema::connection(config('iugu.connection'))->dropIfExists('payment_methods');
     }
 }
