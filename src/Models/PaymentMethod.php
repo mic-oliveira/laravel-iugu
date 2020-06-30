@@ -25,6 +25,8 @@ class PaymentMethod extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class,'client_id');
+        $relation=$this->belongsTo(Customer::class);
+        $relation->setQuery(Customer::where('iugu_id','=','customer_id'));
+        return $relation;
     }
 }

@@ -24,4 +24,8 @@ class Plan extends Model
         'payable_with',
         'features'
     ];
+
+    protected $casts=[
+        'features' => 'json'
+    ];
 }

@@ -22,7 +22,6 @@ class CreateSubscriptionsTable extends Migration
             $table->bigInteger('credits_min')->nullable();
             $table->boolean('two_steps')->nullable();
             $table->boolean('suspend_on_invoice_expired')->nullable();
-            $table->foreignId('client_id')->constrained('customers');
             $table->date('expire_at')->nullable();
             $table->softDeletes();
             $table->timestamps();

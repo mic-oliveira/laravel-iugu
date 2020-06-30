@@ -28,7 +28,13 @@ class Subscription extends Model
         'two_steps',
         'suspend_on_invoice_expired',
         'customer_id',
-        'client_id',
         'expire_at'
     ];
+
+    public function plan()
+    {
+        $relation=$this->belongsTo(Plan::class);
+        $relation->setQuery(Plan::where('plan_identifier','=',$this->plan_identifier)->getQuery());
+        return $relation;
+    }
 }

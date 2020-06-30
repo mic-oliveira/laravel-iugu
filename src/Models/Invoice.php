@@ -45,33 +45,27 @@ class Invoice extends Model
         'early_payment_discounts' => 'json'
     ];
 
-    public function getCustomerAttribute()
+    public function customer()
     {
-        $customer=null;
-        if(!empty($this->customer_id))
-        {
-            $customer=Customer::where('iugu_id','=',$this->customer_id)->get()->first();
-        }
-        return $customer;
+        $relation=$this->belongsTo(Customer::class);
+        $relation->setQuery(Customer::where('iugu_id','=',$this->customer_id)->getQuery());
+        return $relation;
     }
 
     /**
      * @return mixed
      */
-    public function getSubscriptionAttribute()
+    public function subscription()
     {
-        $subscription = null;
-        if(!empty($this->subscription_id))
-        {
-            $subscription=Subscription::where('iugu_id','=',$this->subscription_id)->get()->first();
-        }
-        return $subscription;
+        $relation=$this->belongsTo(Subscription::class);
+        $relation->setQuery(Customer::where('iugu_id','=',$this->subscription_id)->getQuery());
+        return $relation;
     }
 
 
     public function refund()
     {
-        if(empty($this->refund_at))
+        if(empty($this->refund_at) && $this->status=='paid')
         {
             $this->refund_at=$this->refundInvoice();
         }

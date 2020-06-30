@@ -37,4 +37,18 @@ class Customer extends Model
         'custom_variables' => 'json'
     ];
 
+    public function invoice()
+    {
+        $relation=$this->hasMany(Invoice::class);
+        $relation->setQuery(Invoice::where('customer_id', '=', $this->iugu_id)->getQuery());
+        return $relation;
+    }
+
+    public function payment_method()
+    {
+        $relation=$this->hasMany(PaymentMethod::class);
+        $relation->setQuery(PaymentMethod::where('customer_id','=',$this->iugu_id)->getQuery());
+        return $relation;
+    }
+
 }
