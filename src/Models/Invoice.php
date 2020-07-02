@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Iugu\Traits\IuguInvoiceTrait;
 
-class Invoice extends Model
+class Invoice extends BaseModel
 {
     use SoftDeletes;
     use IuguInvoiceTrait;

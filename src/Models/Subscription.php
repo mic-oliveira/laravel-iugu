@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Iugu\Traits\IuguBaseTrait;
 
-class Subscription extends Model
+class Subscription extends BaseModel
 {
     use SoftDeletes;
     use IuguBaseTrait;

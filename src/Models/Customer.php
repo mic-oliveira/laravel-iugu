@@ -9,7 +9,7 @@ use Iugu\Traits\IuguBaseTrait;
 use Iugu\Traits\IuguCustomerTrait;
 
 
-class Customer extends Model
+class Customer extends BaseModel
 {
     use SoftDeletes;
     use IuguBaseTrait;
