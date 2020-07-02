@@ -48,7 +48,6 @@ class IuguServiceProvider extends ServiceProvider
         $this->loadFactoriesFrom(
             __DIR__ . '/../../database/factories'
         );
-        $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
     }
 
 }
