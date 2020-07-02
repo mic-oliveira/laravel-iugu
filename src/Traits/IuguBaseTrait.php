@@ -128,4 +128,9 @@ trait IuguBaseTrait
     {
         return $this->decodeResponse($this->createRequest()->get($this->getBasePath()));
     }
+
+    public function list()
+    {
+        return $this->decodeResponse($this->createRequest()->get($this->getBasePath()));
+    }
 }

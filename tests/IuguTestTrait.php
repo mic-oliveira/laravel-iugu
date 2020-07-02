@@ -327,4 +327,26 @@ trait IuguTestTrait
         ]);
         return new HandlerStack($mock);
     }
+
+    public function mockChargeRequest($statusCode=200,$header=[],$data='',$method='POST',$uri='test')
+    {
+        if(empty($data)) {
+            $data = '{
+                "message": "Autorizado",
+                "errors": {},
+                "success": true,
+                "url": "https://faturas.iugu.com/9abc49c8-afc4-4cc0-ab66-47e7ae5ab726-13f3",
+                "pdf": "https://faturas.iugu.com/9abc49c8-afc4-4cc0-ab66-47e7ae5ab726-13f3.pdf",
+                "identification": null,
+                "invoice_id": "9ABC49C8AFC44CC0AB6647E7AE5AB726",
+                "LR": "00"
+            }';
+        }
+        $mock = new MockHandler([
+            new Response($statusCode,$header,$data),
+            new Response(202, ['Content-Length' => 0]),
+            new RequestException('Error Communicating with Server', new Request($method, $uri))
+        ]);
+        return new HandlerStack($mock);
+    }
 }

@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
-use Iugu\Models\Subscription;
+use Iugu\Models\Charge;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +17,16 @@ use Iugu\Models\Subscription;
 |
 */
 
-$factory->define(Subscription::class, function (Faker $faker) {
+$factory->define(Charge::class, function (Faker $faker) {
     return [
-        'iugu_id' => $faker->uuid,
-        'customer_id' => $faker->uuid,
-        'plan_identifier' => $faker->word,
-        'only_on_charge_success' => $faker->shuffle(['true','false'])[0],
-        'ignore_due_email'=> true,
-        'price_cents' => $faker->numerify('###'),
-        'payable_with' => 'all',
-        'credits_based'=> false,
+        'email' => $faker->email,
+        'token' => $faker->uuid,
+        'itens' => [
+            [
+                'description'   =>  $faker->name,
+                'quantity'  =>  1,
+                'price_cents'   =>  100
+            ]
+        ]
     ];
 });

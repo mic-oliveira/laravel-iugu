@@ -98,4 +98,21 @@ class CustomerService
         $customer->syncDelete();
         return $customer;
     }
+
+    /**
+     * @throws BindingResolutionException
+     */
+    public function syncAll()
+    {
+        $invoices=$this->customerRepository->createModel();
+        $items=collect($invoices->list()->items);
+        $items->each(function ($item){
+            if(!Customer::where('iugu_id','=',$item->id)->exists()) {
+                $customer=$this->customerRepository->createModel();
+                $customer->iugu_id = $item->id;
+                $customer->importFromIugu();
+            }
+        });
+        return $items;
+    }
 }

@@ -4,6 +4,7 @@ namespace Iugu\Services;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Model;
+use Iugu\Models\Invoice;
 use Iugu\Repositories\InvoiceRepository;
 use Throwable;
 
@@ -132,5 +133,22 @@ class InvoiceService
         $invoice = $this->invoiceRepository->find($id);
         $invoice->capture();
         return $invoice;
+    }
+
+    /**
+     * @throws BindingResolutionException
+     */
+    public function syncAll()
+    {
+        $invoices=$this->invoiceRepository->createModel();
+        $items=collect($invoices->list()->items);
+        $items->each(function ($item){
+            if(!Invoice::where('iugu_id','=',$item->id)->exists()) {
+                $invoice=$this->invoiceRepository->createModel();
+                $invoice->iugu_id = $item->id;
+                $invoice->importFromIugu();
+            }
+        });
+        return $items;
     }
 }

@@ -47,9 +47,10 @@ trait GuzzleRequestTrait
         return $this;
     }
 
-    private function setBasePath($basePath='')
+    public function setBasePath($basePath='')
     {
         $this->basePath=$basePath;
+        return $this;
     }
 
     /**
@@ -57,7 +58,7 @@ trait GuzzleRequestTrait
      */
     public function getBasePath()
     {
-        if (empty($basePath))
+        if (empty($this->basePath))
         {
             $this->basePath = "/".config('iugu.api_version')."/$this->table/$this->iugu_id";
         }
