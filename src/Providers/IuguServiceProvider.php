@@ -30,7 +30,8 @@ class IuguServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../../config/iugu_config.php' => config_path('iugu.php')
+            __DIR__ . '/../../config/iugu_config.php' => config_path('iugu.php'),
+            __DIR__.'/../../database/migrations' => database_path('migrations'),
         ]);
         $this->loadMigrationsFrom([
             __DIR__ . '/../../database/migrations'
