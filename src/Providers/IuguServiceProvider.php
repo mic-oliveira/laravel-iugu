@@ -20,16 +20,6 @@ class IuguServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        app()->when([
-            Customer::class,
-            Invoice::class,
-            PaymentMethod::class,
-            Plan::class,
-            Subscription::class
-        ])->needs(Model::class)->give(function ($app) {
-            $model=new Model();
-            $model->setConnection(config('iugu.connection'));
-        });
     }
 
     /**
