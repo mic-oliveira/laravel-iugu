@@ -13,7 +13,6 @@ class CreatePaymentMethodsTable extends Migration
             $table->bigInteger('id')->primary();
             $table->string('iugu_id')->index()->nullable();
             $table->string('customer_id')->nullable();
-            $table->foreignId('client_id')->constrained('customers');
             $table->string('description');
             $table->string('token');
             $table->boolean('set_as_default')->nullable();
