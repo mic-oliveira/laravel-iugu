@@ -10,7 +10,7 @@ class CreatePaymentMethodsTable extends Migration
     public function up()
     {
         Schema::connection(config('iugu.connection'))->create('payment_methods', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger('id')->primary();
             $table->string('iugu_id')->index()->nullable();
             $table->string('customer_id')->nullable();
             $table->foreignId('client_id')->constrained('customers');

@@ -9,7 +9,7 @@ class CreateChargesTable extends Migration
     public function up()
     {
         Schema::connection(config('iugu.connection'))->create('charges', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger('id')->primary();
             $table->string('token');
             $table->integer('discount_cents')->nullable();
             $table->string('customer_id')->nullable();

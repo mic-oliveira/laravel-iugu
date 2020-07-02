@@ -10,7 +10,7 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::connection(config('iugu.connection'))->create('customers', function(Blueprint $table){
-            $table->id();
+            $table->bigInteger('id')->primary();
             $table->string('iugu_id')->index()->nullable();
             $table->string('name');
             $table->string('email');
