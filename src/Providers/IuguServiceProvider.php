@@ -42,9 +42,6 @@ class IuguServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/iugu_config.php' => config_path('iugu.php')
         ]);
-        $this->loadFactoriesFrom(
-            __DIR__ . '/../../database/factories'
-        );
         $this->loadMigrationsFrom([
             __DIR__ . '/../../database/migrations'
         ]);
