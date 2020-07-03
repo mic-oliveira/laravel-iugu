@@ -36,7 +36,7 @@ class ChargeService
             $charge->charge();
             return $charge;
         } catch (Exception $exception) {
-            return $exception;
+            throw $exception;
         }
     }
 }
