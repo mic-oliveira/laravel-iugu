@@ -9,7 +9,7 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::connection(config('iugu.connection'))->create('invoices', function (Blueprint $table) {
-            $table->bigIncrements('id')->primary();
+            $table->bigIncrements('id');
             $table->string('iugu_id')->index()->nullable();
             $table->string('email');
             $table->string('status')->nullable();

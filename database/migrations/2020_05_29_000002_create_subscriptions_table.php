@@ -9,7 +9,7 @@ class CreateSubscriptionsTable extends Migration
     public function up()
     {
         Schema::connection(config('iugu.connection'))->create('subscriptions', function (Blueprint $table) {
-            $table->bigIncrements('id')->primary();
+            $table->bigIncrements('id');
             $table->string('iugu_id')->index()->nullable();
             $table->string('customer_id')->index();
             $table->string('plan_identifier')->nullable();
