@@ -13,7 +13,8 @@ class IuguInstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'iugu:install';
+    protected $signature = 'iugu:install
+                            {--force : Sobrecreve todas as migrations}';
 
     /**
      * The console command description.
@@ -40,6 +41,22 @@ class IuguInstallCommand extends Command
     public function handle()
     {
         //
-        $this->call('migrate:fresh', ['--database'=>config('iugu.connection'), '--path'=>'/vendor/michaelferreira/iugu-laravel/database/migrations']);
+        if($this->option('force'))
+        {
+            $this->call('migrate:fresh',
+                [
+                    '--database'=>config('iugu.connection'),
+                    '--path'=>'/vendor/michaelferreira/iugu-laravel/database/migrations'
+                ]
+            );
+        } else {
+            $this->call('migrate',
+                [
+                    '--database'=>config('iugu.connection'),
+                    '--path'=>'/vendor/michaelferreira/iugu-laravel/database/migrations'
+                ]
+            );
+        }
+
     }
 }
