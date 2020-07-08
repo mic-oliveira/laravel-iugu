@@ -136,18 +136,29 @@ class InvoiceService
     }
 
     /**
+     * @param $iugu_id
+     * @return Model|mixed
      * @throws BindingResolutionException
      */
-    public function syncAll()
+    public function import($iugu_id)
+    {
+        $invoice=$this->invoiceRepository->createModel();
+        if(!Invoice::where('iugu_id','=',$iugu_id)->exists()) {
+            $invoice->iugu_id = $iugu_id;
+            $invoice->importFromIugu();
+        }
+        return $invoice;
+    }
+
+    /**
+     * @throws BindingResolutionException
+     */
+    public function importAll()
     {
         $invoices=$this->invoiceRepository->createModel();
         $items=collect($invoices->list()->items);
         $items->each(function ($item){
-            if(!Invoice::where('iugu_id','=',$item->id)->exists()) {
-                $invoice=$this->invoiceRepository->createModel();
-                $invoice->iugu_id = $item->id;
-                $invoice->importFromIugu();
-            }
+            $this->import($item->id);
         });
         return $items;
     }

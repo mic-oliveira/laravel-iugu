@@ -100,18 +100,29 @@ class CustomerService
     }
 
     /**
+     * @param $iugu_id
+     * @return Model|mixed
      * @throws BindingResolutionException
      */
-    public function syncAll()
+    public function import($iugu_id)
+    {
+        $customer=$this->customerRepository->createModel();
+        if(!Customer::where('iugu_id','=',$iugu_id)->exists()) {
+            $customer->iugu_id=$iugu_id;
+            $customer->importFromIugu();
+        }
+        return $customer;
+    }
+
+    /**
+     * @throws BindingResolutionException
+     */
+    public function importAll()
     {
         $invoices=$this->customerRepository->createModel();
         $items=collect($invoices->list()->items);
         $items->each(function ($item){
-            if(!Customer::where('iugu_id','=',$item->id)->exists()) {
-                $customer=$this->customerRepository->createModel();
-                $customer->iugu_id = $item->id;
-                $customer->importFromIugu();
-            }
+            $this->import($item->id);
         });
         return $items;
     }
