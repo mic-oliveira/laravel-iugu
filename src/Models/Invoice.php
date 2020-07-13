@@ -34,6 +34,7 @@ class Invoice extends BaseModel
         'early_payment_discounts',
         'customer_id',
         'subscription_id',
+        'order_id',
         'items',
         'logs',
     ];
