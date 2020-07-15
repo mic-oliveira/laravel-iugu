@@ -44,7 +44,7 @@ class Invoice extends BaseModel
         'paid',
         'captured_at',
         'authorized_at',
-        'refund_at',
+        'refunded_at',
         'canceled_atd',
         'chargeback_at',
         'expired_at',
