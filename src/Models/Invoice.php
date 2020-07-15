@@ -37,6 +37,17 @@ class Invoice extends BaseModel
         'order_id',
         'items',
         'logs',
+        'credit_card_band',
+        'credit_card_bin',
+        'credit_card_last_four',
+        'credit_card_tid',
+        'paid',
+        'captured_at',
+        'authorized_at',
+        'refund_at',
+        'canceled_atd',
+        'chargeback_at',
+        'expired_at',
     ];
 
     protected $casts=[
