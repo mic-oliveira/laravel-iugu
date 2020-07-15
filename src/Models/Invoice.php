@@ -21,6 +21,7 @@ class Invoice extends BaseModel
         'total_cents',
         'ensure_workday_due_date',
         'amount',
+        'currency',
         'discount_cents',
         'return_url',
         'expire_url',
