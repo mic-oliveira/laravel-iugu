@@ -35,7 +35,7 @@ class Charge extends BaseModel
         'pdf',
         'identificarion',
         'invoice_id',
-        'lr',
+        'LR',
     ];
 
     protected $casts = [
