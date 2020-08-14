@@ -2,14 +2,8 @@
 
 namespace Iugu\Providers;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Iugu\Console\IuguInstallCommand;
-use Iugu\Models\Customer;
-use Iugu\Models\Invoice;
-use Iugu\Models\PaymentMethod;
-use Iugu\Models\Plan;
-use Iugu\Models\Subscription;
 
 class IuguServiceProvider extends ServiceProvider
 {
@@ -41,6 +35,9 @@ class IuguServiceProvider extends ServiceProvider
                 IuguInstallCommand::class
             ]);
         }
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/iugu_config.php', 'iugu'
+        );
     }
 
 }
