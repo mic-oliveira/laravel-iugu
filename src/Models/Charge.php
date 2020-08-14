@@ -7,7 +7,6 @@ namespace Iugu\Models;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
-use Illuminate\Database\Eloquent\Model;
 use Iugu\Traits\IuguBaseTrait;
 use Mockery\Exception;
 

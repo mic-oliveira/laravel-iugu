@@ -8,7 +8,7 @@ class RenameFieldsCharge extends Migration
 {
     public function up()
     {
-        Schema::connection(config('iugu.connection'))->table('charges', function (Blueprint $table) {
+        Schema::connection(config('iugu.connection'))->table('invoices', function (Blueprint $table) {
             $table->renameColumn('captured_at','captured_at_iso');
             $table->renameColumn('authorized_at','authorized_at_iso');
             $table->renameColumn('expired_at','expired_at_iso');
@@ -20,8 +20,8 @@ class RenameFieldsCharge extends Migration
             $table->string('expired_at')->after('authorized_at_iso')->nullable();
             $table->string('refunded_at')->after('expired_at_iso')->nullable();
             $table->string('canceled_at')->after('refunded_at_iso')->nullable();
-            $table->string('protested_at')->nullable();
-            $table->dateTime('protested_at_iso')->nullable();
+            $table->string('protested_at')->after('canceled_at_iso')->nullable();
+            $table->dateTime('protested_at_iso')->after('protested_at')->nullable();
             $table->string('chargeback_at')->after('protested_at_iso')->nullable();
             $table->date('occurrence_date')->after('chargeback_at_iso')->nullable();
         });
@@ -29,7 +29,7 @@ class RenameFieldsCharge extends Migration
 
     public function down()
     {
-        Schema::connection(config('iugu.connection'))->table('charges',function (Blueprint $table) {
+        Schema::connection(config('iugu.connection'))->table('invoices',function (Blueprint $table) {
             $table->dropColumn('authorized_at');
             $table->dropColumn('expired_at');
             $table->dropColumn('refunded_at');

@@ -2,7 +2,6 @@
 
 namespace Iugu\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Iugu\Traits\IuguInvoiceTrait;
 
@@ -46,11 +45,20 @@ class Invoice extends BaseModel
         'credit_card_tid',
         'paid',
         'captured_at',
+        'captured_at_iso',
         'authorized_at',
+        'authorized_at_iso',
         'refunded_at',
-        'canceled_atd',
+        'refunded_at_iso',
+        'canceled_at',
+        'canceled_at_iso',
+        'protested_at',
+        'protested_at_iso',
         'chargeback_at',
+        'chargeback_at_iso',
         'expired_at',
+        'expired_at_iso',
+        'occurrence_date'
     ];
 
     protected $casts=[
