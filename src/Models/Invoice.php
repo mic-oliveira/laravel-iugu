@@ -61,7 +61,17 @@ class Invoice extends BaseModel
         'occurrence_date'
     ];
 
-    protected $casts=[
+    protected $dates = [
+        'captured_at_iso',
+        'authorized_at_iso',
+        'refunded_at_iso',
+        'canceled_at_iso',
+        'protested_at_iso',
+        'chargeback_at_iso',
+        'expired_at_iso',
+    ];
+
+    protected $casts = [
         'items' => 'json',
         'logs' =>  'json',
         'custom_variables' => 'json',
