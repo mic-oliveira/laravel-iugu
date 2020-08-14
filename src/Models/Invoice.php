@@ -44,8 +44,6 @@ class Invoice extends BaseModel
         'credit_card_last_four',
         'credit_card_tid',
         'paid',
-        'captured_at',
-        'captured_at_iso',
         'authorized_at',
         'authorized_at_iso',
         'refunded_at',
@@ -62,7 +60,6 @@ class Invoice extends BaseModel
     ];
 
     protected $dates = [
-        'captured_at_iso',
         'authorized_at_iso',
         'refunded_at_iso',
         'canceled_at_iso',
