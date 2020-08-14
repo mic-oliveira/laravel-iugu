@@ -68,6 +68,8 @@ class Invoice extends BaseModel
         'expired_at_iso',
     ];
 
+    protected $dateFormat='Y-m-d H:i:sO';
+
     protected $casts = [
         'items' => 'json',
         'logs' =>  'json',
