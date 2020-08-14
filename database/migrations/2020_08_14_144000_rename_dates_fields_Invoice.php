@@ -15,7 +15,6 @@ class RenameDatesFieldsInvoice extends Migration
             $table->renameColumn('refunded_at','refunded_at_iso');
             $table->renameColumn('canceled_at','canceled_at_iso');
             $table->renameColumn('chargeback_at','chargeback_at_iso');
-
         });
     }
 

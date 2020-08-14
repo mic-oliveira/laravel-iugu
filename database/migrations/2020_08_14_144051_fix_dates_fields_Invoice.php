@@ -14,9 +14,9 @@ class FixDatesFieldsInvoice extends Migration
             $table->string('expired_at')->after('authorized_at_iso')->nullable();
             $table->string('refunded_at')->after('expired_at_iso')->nullable();
             $table->string('canceled_at')->after('refunded_at_iso')->nullable();
+            $table->dateTime('protested_at_iso')->after('canceled_at_iso')->nullable();
             $table->string('protested_at')->after('canceled_at_iso')->nullable();
-            $table->dateTime('protested_at_iso')->after('protested_at')->nullable();
-            $table->string('chargeback_at')->after('protested_at_iso')->nullable();
+            $table->string('chargeback_at')->after('canceled_at_iso')->nullable();
             $table->date('occurrence_date')->after('chargeback_at_iso')->nullable();
         });
     }
@@ -30,6 +30,7 @@ class FixDatesFieldsInvoice extends Migration
             $table->dropColumn('canceled_at');
             $table->dropColumn('protested_at');
             $table->dropColumn('chargeback_at');
+            $table->dropColumn('protested_at_iso');
             $table->dropColumn('ocurrence_date');
         });
     }
