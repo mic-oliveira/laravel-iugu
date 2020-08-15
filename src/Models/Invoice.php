@@ -80,32 +80,32 @@ class Invoice extends BaseModel
 
     public function setAuthorizedAtIsoAttribute($value)
     {
-        $this->attributes['authorized_at_iso']=Carbon::parse($value)??null;
+        $this->attributes['authorized_at_iso']=$value?Carbon::parse($value):null;
     }
 
     public function setRefundedAtIsoAttribute($value)
     {
-        $this->attributes['refunded_at_iso']=Carbon::parse($value)??null;
+        $this->attributes['refunded_at_iso']=$value?Carbon::parse($value):null;
     }
 
     public function setCanceledAtIsoAttribute($value)
     {
-        $this->attributes['canceled_at_iso']=Carbon::parse($value)??null;
+        $this->attributes['canceled_at_iso']=$value?Carbon::parse($value):null;
     }
 
     public function setProtestedAtIsoAttribute($value)
     {
-        $this->attributes['protested_at_iso']=Carbon::parse($value)??null;
+        $this->attributes['protested_at_iso']=$value?Carbon::parse($value):null;
     }
 
     public function setChargebackAtIsoAttribute($value)
     {
-        $this->attributes['chargeback_at_iso']=Carbon::parse($value)??null;
+        $this->attributes['chargeback_at_iso']=$value?Carbon::parse($value):null;
     }
 
     public function setExpiredAtIsoAttribute($value)
     {
-        $this->attributes['expired_at_iso']=Carbon::parse($value)??null;
+        $this->attributes['expired_at_iso']=$value?Carbon::parse($value):null;
     }
 
     public function customer()
