@@ -4,10 +4,6 @@
 namespace Iugu\Traits;
 
 
-use Exception;
-use GuzzleHttp\Exception\ClientException;
-use Iugu\Models\Invoice;
-
 trait IuguInvoiceTrait
 {
     use IuguBaseTrait;
@@ -15,16 +11,30 @@ trait IuguInvoiceTrait
     public function refundInvoice()
     {
         $invoice=$this->decodeResponse($this->createRequest()->post($this->getBasePath()."/refund"));
-        $invoice=collect($invoice)->toArray();
-        $this->fill($invoice)->saveOrFail();
+        $data=collect($invoice)->toArray();
+        $this->fill($data);
+        $this->setDates($invoice);
+        $this->saveOrFail();
         return $this;
+    }
+
+    public function setDates($invoice)
+    {
+        $this->authorized_at_iso=$invoice->authorized_at_iso;
+        $this->refunded_at_iso=$invoice->refunded_at_iso;
+        $this->canceled_at_iso=$invoice->canceled_at_iso;
+        $this->protested_at_iso=$invoice->protested_at_iso;
+        $this->chargeback_at_iso=$invoice->chargeback_at_iso;
+        $this->expired_at_iso=$invoice->expired_at_iso;
     }
 
     public function cancelInvoice()
     {
         $invoice = $this->decodeResponse($this->createRequest()->put($this->getBasePath()."/cancel"));
-        $invoice=collect($invoice)->toArray();
-        $this->fill($invoice)->saveOrFail();
+        $data=collect($invoice)->toArray();
+        $this->fill($data);
+        $this->setDates($invoice);
+        $this->saveOrFail();
         $this->delete();
         return $this;
     }
@@ -38,8 +48,10 @@ trait IuguInvoiceTrait
             'json' => collect($this->toArray())->toArray()
         ]));
         $this->iugu_id=$invoice->id;
-        $invoice=collect($invoice)->toArray();
-        $this->fill($invoice)->saveOrFail();
+        $data=collect($invoice)->toArray();
+        $this->fill($data);
+        $this->setDates($invoice);
+        $this->saveOrFail();
         return $this;
     }
 
@@ -84,16 +96,20 @@ trait IuguInvoiceTrait
     public function sendEmailInvoice()
     {
         $invoice=$this->decodeResponse($this->createRequest()->post($this->getBasePath()."/send_email"));
-        $invoice=collect($invoice)->toArray();
-        $this->fill($invoice)->saveOrFail();
+        $data=collect($invoice)->toArray();
+        $this->fill($data);
+        $this->setDates($invoice);
+        $this->saveOrFail();
         return $this;
     }
 
     public function captureInvoice()
     {
         $invoice=$this->decodeResponse($this->createRequest()->post($this->getBasePath()."/capture"),true);
-        //$invoice=collect($invoice)->toArray();
-        $this->fill($invoice)->save();
+        $data=collect($invoice)->toArray();
+        $this->fill($data);
+        $this->setDates($invoice);
+        $this->saveOrFail();
         return $this;
     }
 }

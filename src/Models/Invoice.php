@@ -2,6 +2,7 @@
 
 namespace Iugu\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Iugu\Traits\IuguInvoiceTrait;
 
@@ -76,6 +77,36 @@ class Invoice extends BaseModel
         'custom_variables' => 'json',
         'early_payment_discounts' => 'json'
     ];
+
+    public function setAuthorizedAtIsoAttribute($value)
+    {
+        $this->attributes['authorized_at_iso']=Carbon::parse($value)??null;
+    }
+
+    public function setRefundedAtIsoAttribute($value)
+    {
+        $this->attributes['refunded_at_iso']=Carbon::parse($value)??null;
+    }
+
+    public function setCanceledAtIsoAttribute($value)
+    {
+        $this->attributes['canceled_at_iso']=Carbon::parse($value)??null;
+    }
+
+    public function setProtestedAtIsoAttribute($value)
+    {
+        $this->attributes['protested_at_iso']=Carbon::parse($value)??null;
+    }
+
+    public function setChargebackAtIsoAttribute($value)
+    {
+        $this->attributes['chargeback_at_iso']=Carbon::parse($value)??null;
+    }
+
+    public function setExpiredAtIsoAttribute($value)
+    {
+        $this->attributes['expired_at_iso']=Carbon::parse($value)??null;
+    }
 
     public function customer()
     {
