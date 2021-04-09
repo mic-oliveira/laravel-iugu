@@ -22,19 +22,14 @@
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^6.3",
-        "illuminate/container": "^5.8|^6.0|^7.0",
-        "illuminate/contracts": "^5.8|^6.0|^7.0",
-        "illuminate/database": "^5.8|^6.0|^7.0",
+        "guzzlehttp/guzzle": "^6.3|^7.0",
+        "illuminate/container": "^5.8|^6.0|^7.0|^8.0",
+        "illuminate/contracts": "^5.8|^6.0|^7.0|^8.0",
+        "illuminate/database": "^5.8|^6.0|^7.0|^8.0",
         "illuminate/support": "^5.5|^6.0|^7.0|^8.0",
         "spatie/laravel-query-builder": "^2.8"
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "^6.3",
-        "illuminate/container": "^5.8|^6.0|^7.0",
-        "illuminate/contracts": "^5.8|^6.0|^7.0",
-        "illuminate/database": "^5.8|^6.0|^7.0",
-        "illuminate/support": "^5.5|^6.0|^7.0|^8.0",
         "phpunit/phpunit": "^6.0|^7.0|^8.0",
         "orchestra/testbench": "^3.8|^4.0|^5.0",
         "blastcloud/guzzler": "^1.6"
