@@ -16,7 +16,10 @@ class RenameFieldsInvoice extends Migration
 
     public function down()
     {
-        Schema::connection(config('iugu.connection'))->dropIfExists('invoices');
+        Schema::connection(config('iugu.connection'))->table('invoices', function (Blueprint $table) {
+            $table->renameColumn('refunded_at','refund_at');
+            $table->renameColumn('canceled_at','canceled_atd');
+        });
     }
 
 }
