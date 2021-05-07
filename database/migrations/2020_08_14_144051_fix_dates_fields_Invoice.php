@@ -31,7 +31,7 @@ class FixDatesFieldsInvoice extends Migration
             $table->dropColumn('protested_at');
             $table->dropColumn('chargeback_at');
             $table->dropColumn('protested_at_iso');
-            $table->dropColumn('ocurrence_date');
+            $table->dropColumn('occurrence_date');
         });
     }
 
