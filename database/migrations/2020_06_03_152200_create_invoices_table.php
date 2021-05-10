@@ -11,7 +11,7 @@ class CreateInvoicesTable extends Migration
         Schema::connection(config('iugu.connection'))->create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('iugu_id')->index()->nullable();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('status')->nullable();
             $table->string('order_id')->nullable();
             $table->date('due_date');
