@@ -39,7 +39,9 @@ class Invoice extends BaseModel
         'subscription_id',
         'order_id',
         'items',
+        'payable_with',
         'logs',
+        'pix',
         'credit_card_band',
         'credit_card_bin',
         'credit_card_last_four',
@@ -72,6 +74,8 @@ class Invoice extends BaseModel
     protected $dateFormat='Y-m-d H:i:s';
 
     protected $casts = [
+        'payable_with' => 'array',
+        'pix' => 'json',
         'items' => 'json',
         'logs' =>  'json',
         'custom_variables' => 'json',
