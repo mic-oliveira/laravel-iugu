@@ -9,7 +9,7 @@ class CreatePixJsonField extends Migration
     public function up()
     {
         Schema::connection(config('iugu.connection'))->table('invoices', function (Blueprint $table) {
-            $table->json('pix')->nullable();
+            $table->json('pix')->nullable()->after('payable_with');
         });
     }
 
