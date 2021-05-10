@@ -3,7 +3,7 @@
 namespace Iugu\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Iugu\Console\IuguInstallCommand;
+use Iugu\Console\IuguRollbackCommand;
 
 class IuguServiceProvider extends ServiceProvider
 {
@@ -32,7 +32,7 @@ class IuguServiceProvider extends ServiceProvider
         ]);
         if ($this->app->runningInConsole()) {
             $this->commands([
-                IuguInstallCommand::class
+                IuguRollbackCommand::class
             ]);
         }
         $this->mergeConfigFrom(
