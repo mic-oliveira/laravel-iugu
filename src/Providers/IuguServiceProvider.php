@@ -33,7 +33,6 @@ class IuguServiceProvider extends ServiceProvider
         ]);
         if ($this->app->runningInConsole()) {
             $this->commands([
-                IuguRollbackCommand::class,
                 IuguInstallCommand::class,
             ]);
         }
