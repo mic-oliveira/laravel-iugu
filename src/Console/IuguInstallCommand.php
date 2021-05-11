@@ -14,7 +14,7 @@ class IuguInstallCommand extends Command
      * @var string
      */
     protected $signature = 'iugu:install
-                            {--force : Sobrecreve todas as migrations}';
+                            {--force : Sobrecreve todas as migrations} {--rollback: faz rollback das migrations Iugu}';
 
     /**
      * The console command description.
@@ -57,6 +57,14 @@ class IuguInstallCommand extends Command
                 ]
             );
         }
-
+        if($this->option('rollback'))
+        {
+            $this->call('migrate:rollback',
+                [
+                    '--database'=>config('iugu.connection'),
+                    '--path'=>'/vendor/michaelferreira/iugu-laravel/database/migrations'
+                ]
+            );
+        }
     }
 }
