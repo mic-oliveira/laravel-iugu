@@ -17,8 +17,8 @@ class RemoveCaptureDateInvoice extends Migration
     public function down()
     {
         Schema::connection(config('iugu.connection'))->table('invoices',function (Blueprint $table) {
-            $table->string('captured_at');
-            $table->dateTimeTz('captured_at_iso');
+            $table->string('captured_at')->nullable();
+            $table->dateTimeTz('captured_at_iso')->nullable();
         });
     }
 
