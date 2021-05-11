@@ -14,7 +14,7 @@ class IuguInstallCommand extends Command
      * @var string
      */
     protected $signature = 'iugu:install
-                            {--force : Sobrecreve todas as migrations} {--rollback: faz rollback das migrations Iugu}';
+                            {--force : Sobrecreve todas as migrations} {--rollback : faz rollback das migrations Iugu}';
 
     /**
      * The console command description.
