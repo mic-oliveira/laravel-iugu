@@ -140,7 +140,7 @@ class Invoice extends BaseModel
 
     public function cancel()
     {
-        if ($this->canceled_at && $this->status!='canceled') {
+        if (empty($this->canceled_at) && $this->status!='canceled') {
             $this->canceled_at = $this->cancelInvoice()->canceled_at;
         }
     }

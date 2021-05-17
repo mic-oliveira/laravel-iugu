@@ -107,7 +107,7 @@ class InvoiceService
     public function cancel($id)
     {
         $invoice = $this->invoiceRepository->find($id);
-        $invoice->cancel();
+        $invoice->cancelInvoice();
         return $invoice;
     }
 
@@ -131,7 +131,7 @@ class InvoiceService
     public function capture($id)
     {
         $invoice = $this->invoiceRepository->find($id);
-        $invoice->capture();
+        $invoice->captureInvoice();
         return $invoice;
     }
 
