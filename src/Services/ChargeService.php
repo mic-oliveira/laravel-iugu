@@ -31,7 +31,6 @@ class ChargeService
     {
         try{
             $charge = $this->chargeRepository->createModel();
-            $charge->customer_id = $chargeData['customer_id'];
             $charge->fill($chargeData);
             $charge->charge();
             return $charge;
