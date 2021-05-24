@@ -9,29 +9,30 @@ class FixDatesFieldsInvoice extends Migration
     public function up()
     {
         Schema::connection(config('iugu.connection'))->table('invoices', function (Blueprint $table) {
-            $table->string('captured_at')->after('paid')->nullable();
-            $table->string('authorized_at')->after('captured_at_iso')->nullable();
-            $table->string('expired_at')->after('authorized_at_iso')->nullable();
-            $table->string('refunded_at')->after('expired_at_iso')->nullable();
-            $table->string('canceled_at')->after('refunded_at_iso')->nullable();
-            $table->dateTime('protested_at_iso')->after('canceled_at_iso')->nullable();
-            $table->string('protested_at')->after('canceled_at_iso')->nullable();
-            $table->string('chargeback_at')->after('canceled_at_iso')->nullable();
-            $table->date('occurrence_date')->after('chargeback_at_iso')->nullable();
+            $table->string('captured_at')->after('paid')->nullable()->change();
+            $table->string('authorized_at')->after('captured_at_iso')->nullable()->change();
+            $table->string('expired_at')->after('authorized_at_iso')->nullable()->change();
+            $table->string('refunded_at')->after('expired_at_iso')->nullable()->change();
+            $table->string('canceled_at')->after('refunded_at_iso')->nullable()->change();
+            $table->dateTime('protested_at_iso')->after('canceled_at_iso')->nullable()->change();
+            $table->string('protested_at')->after('canceled_at_iso')->nullable()->change();
+            $table->string('chargeback_at')->after('canceled_at_iso')->nullable()->change();
+            $table->date('occurrence_date')->after('chargeback_at_iso')->nullable()->change();
         });
     }
 
     public function down()
     {
         Schema::connection(config('iugu.connection'))->table('invoices',function (Blueprint $table) {
-            $table->dropColumn('authorized_at');
-            $table->dropColumn('expired_at');
-            $table->dropColumn('refunded_at');
-            $table->dropColumn('canceled_at');
-            $table->dropColumn('protested_at');
-            $table->dropColumn('chargeback_at');
-            $table->dropColumn('protested_at_iso');
-            $table->dropColumn('occurrence_date');
+            $table->string('captured_at')->after('paid')->nullable(false)->change();
+            $table->string('authorized_at')->after('captured_at_iso')->nullable(false)->change();
+            $table->string('expired_at')->after('authorized_at_iso')->nullable(false)->change();
+            $table->string('refunded_at')->after('expired_at_iso')->nullable(false)->change();
+            $table->string('canceled_at')->after('refunded_at_iso')->nullable(false)->change();
+            $table->dateTime('protested_at_iso')->after('canceled_at_iso')->nullable(false)->change();
+            $table->string('protested_at')->after('canceled_at_iso')->nullable(false)->change();
+            $table->string('chargeback_at')->after('canceled_at_iso')->nullable(false)->change();
+            $table->date('occurrence_date')->after('chargeback_at_iso')->nullable(false)->change();
         });
     }
 
