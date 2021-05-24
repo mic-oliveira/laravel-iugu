@@ -15,7 +15,7 @@ class RenameFieldsCharge extends Migration
 
     public function down()
     {
-        Schema::connection(config('iugu.connection'))->table('charge', function (Blueprint $table) {
+        Schema::connection(config('iugu.connection'))->table('charges', function (Blueprint $table) {
             $table->renameColumn('LR','lr');
         });
     }
