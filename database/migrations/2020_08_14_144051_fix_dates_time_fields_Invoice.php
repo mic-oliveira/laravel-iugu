@@ -22,13 +22,13 @@ class FixDatesTimeFieldsInvoice extends Migration
     public function down()
     {
         Schema::connection(config('iugu.connection'))->table('invoices',function (Blueprint $table) {
-            $table->dropColumn('captured_at_iso');
-            $table->dropColumn('canceled_at_iso');
-            $table->dropColumn('authorized_at_iso');
-            $table->dropColumn('refunded_at_iso');
-            $table->dropColumn('protested_at_iso');
-            $table->dropColumn('chargeback_at_iso');
-            $table->dropColumn('expired_at_iso');
+            $table->string('captured_at_iso')->nullable()->change();
+            $table->string('canceled_at_iso')->nullable()->change();
+            $table->string('authorized_at_iso')->nullable()->change();
+            $table->string('refunded_at_iso')->nullable()->change();
+            $table->dateTime('protested_at_iso')->nullable()->change();
+            $table->string('chargeback_at_iso')->nullable()->change();
+            $table->string('expired_at_iso')->nullable()->change();
         });
     }
 
